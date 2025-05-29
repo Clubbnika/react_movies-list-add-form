@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { TextField } from '../TextField';
 
 type Movie = {
@@ -21,14 +21,10 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const [imgUrl, setImgUrl] = useState('');
   const [imdbUrl, setImdbUrl] = useState('');
   const [imdbId, setImdbId] = useState('');
-  const [isValid, setIsValid] = useState(false);
 
-  useEffect(() => {
-    const allFilled =
-      title.trim() && imgUrl.trim() && imdbUrl.trim() && imdbId.trim();
-
-    setIsValid(Boolean(allFilled));
-  }, [title, imgUrl, imdbUrl, imdbId]);
+  // Розраховуємо isValid безпосередньо перед використанням
+  const isValid =
+    title.trim() && imgUrl.trim() && imdbUrl.trim() && imdbId.trim();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -52,38 +48,38 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
 
   return (
     <form className="NewMovie" key={count} onSubmit={handleSubmit}>
-      <h2 className="title">Add a movie</h2>
+      <h2 className="title">Додати фільм</h2>
 
       <TextField
         name="title"
-        label="Title"
+        label="Назва"
         value={title}
         onChange={setTitle}
         required
       />
       <TextField
         name="description"
-        label="Description"
+        label="Опис"
         value={description}
         onChange={setDescription}
       />
       <TextField
         name="imgUrl"
-        label="Image URL"
+        label="Посилання на зображення"
         value={imgUrl}
         onChange={setImgUrl}
         required
       />
       <TextField
         name="imdbUrl"
-        label="Imdb URL"
+        label="Посилання на Imdb"
         value={imdbUrl}
         onChange={setImdbUrl}
         required
       />
       <TextField
         name="imdbId"
-        label="Imdb ID"
+        label="ID на Imdb"
         value={imdbId}
         onChange={setImdbId}
         required
@@ -97,7 +93,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
             className="button is-link"
             disabled={!isValid}
           >
-            Add
+            Додати
           </button>
         </div>
       </div>
