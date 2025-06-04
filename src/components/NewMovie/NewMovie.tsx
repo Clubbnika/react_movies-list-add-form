@@ -22,7 +22,6 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const [imdbUrl, setImdbUrl] = useState('');
   const [imdbId, setImdbId] = useState('');
 
-  // Розраховуємо isValid безпосередньо перед використанням
   const isValid =
     title.trim() && imgUrl.trim() && imdbUrl.trim() && imdbId.trim();
 
@@ -48,38 +47,38 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
 
   return (
     <form className="NewMovie" key={count} onSubmit={handleSubmit}>
-      <h2 className="title">Додати фільм</h2>
+      <h2 className="title">Add a movie</h2>
 
       <TextField
         name="title"
-        label="Назва"
+        label="Title"
         value={title}
         onChange={setTitle}
         required
       />
       <TextField
         name="description"
-        label="Опис"
+        label="Description"
         value={description}
         onChange={setDescription}
       />
       <TextField
         name="imgUrl"
-        label="Посилання на зображення"
+        label="Image URL"
         value={imgUrl}
         onChange={setImgUrl}
         required
       />
       <TextField
         name="imdbUrl"
-        label="Посилання на Imdb"
+        label="Imdb URL"
         value={imdbUrl}
         onChange={setImdbUrl}
         required
       />
       <TextField
         name="imdbId"
-        label="ID на Imdb"
+        label="Imdb ID"
         value={imdbId}
         onChange={setImdbId}
         required
@@ -93,7 +92,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
             className="button is-link"
             disabled={!isValid}
           >
-            Додати
+            Add
           </button>
         </div>
       </div>
